@@ -1,7 +1,7 @@
 efsProvisioner:
-  efsFileSystemId: fs-1e195046
+  efsFileSystemId: fs-
   awsRegion: eu-central-1
-  path: /afdemo
+  path: /efs
   provisionerName: eks/aws-efs
   storageClass:
     name: efs-afdemo
