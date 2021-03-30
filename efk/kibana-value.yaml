@@ -4,7 +4,7 @@ image:
   tag: 7.9.2
 ingress:
   enabled: true
-  hostname: logging.axonfintech.io
+  hostname: logging..io
   path: /
   tls: true
 elasticsearch:
