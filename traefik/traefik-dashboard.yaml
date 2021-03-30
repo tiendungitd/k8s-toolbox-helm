@@ -1,0 +1,21 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard
+  namespace: traefik
+#  annotations:
+ #   traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`db.axonfintech.io`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+      kind: Rule
+      middlewares:
+        - name: traefik-dashboard-basicauth
+          namespace: traefik
+      services:
+        - name: api@internal
+          kind: TraefikService
+  tls:
+    secretName: axonfintech-tls

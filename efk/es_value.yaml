@@ -1,0 +1,17 @@
+coordinating:
+  replicas: 1
+data:
+  name: data
+  replicas: 1
+  persistence:
+    size: 30Gi
+
+master:
+  name: master
+  replicas: 1
+  persistence:
+    enabled: true
+    accessModes:
+      - ReadWriteOnce
+    size: 30Gi
+

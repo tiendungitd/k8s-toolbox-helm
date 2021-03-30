@@ -1,0 +1,11 @@
+configMaps:
+  useDefaults:
+    systemConf: false
+    containersInputConf: true
+    containersKeepTimeKey: false
+    systemInputConf: false
+    forwardInputConf: false
+    monitoringConf: false
+    outputConf: true
+elasticsearch:
+  hosts: elasticsearch-coordinating-only:9200

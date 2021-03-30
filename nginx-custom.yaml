@@ -1,0 +1,34 @@
+controller:
+  replicaCount: 1
+  service:
+    type: "LoadBalancer"
+    targetPorts:
+      http: http
+      https: https
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: "900"
+#      service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0
+      service.beta.kubernetes.io/aws-load-balancer-type: elb
+      service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: "*"
+  stats:
+    enabled: false
+  metrics:
+    enabled: true
+    service:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "10254"
+  config:
+    ssl-protocols: "TLSv1 TLSv1.1 TLSv1.2"
+    use-proxy-protocol: "true"
+    client-body-buffer-size: 128K
+    client-max-body-size: 20m
+    hsts: "true"
+    proxy-body-size: 1G
+    proxy-buffering: "off"
+    proxy-read-timeout: "600"
+    proxy-send-timeout: "600"
+    server-tokens: "false"
+    ssl-redirect: "false"
+    upstream-keepalive-connections: "50"
+    use-forwarded-headers: "true"

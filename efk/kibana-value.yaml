@@ -1,0 +1,23 @@
+image:
+  registry: docker.io
+  repository: bitnami/kibana
+  tag: 7.9.2
+ingress:
+  enabled: true
+  hostname: logging.axonfintech.io
+  path: /
+  tls: true
+elasticsearch:
+  hosts: 
+    - elasticsearch-coordinating-only.efk.svc.cluster.local
+  port: 9200
+plugins:
+ - https://github.com/sivasamyk/logtrail/releases/download/v0.1.31/logtrail-7.9.2-0.1.31.zip
+extraVolumes:
+  - name: logtrail-config
+    configMap:
+      name: logtrail
+extraVolumeMounts:
+  - name: logtrail-config
+    mountPath: /usr/share/kibana/plugins/logtrail/logtrail.json
+    subPath: logtrail.json
