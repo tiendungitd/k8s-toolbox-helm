@@ -10,7 +10,7 @@ data:
       "index_patterns" : [
         {
           "es": {
-            "default_index": "filebeat-*"
+            "default_index": "logstash-*"
           },
           "tail_interval_in_seconds": 10,
           "es_index_time_offset_in_seconds": 0,
@@ -23,13 +23,21 @@ data:
           "fields" : {
             "mapping" : {
                 "timestamp" : "@timestamp",
-                "hostname" : "fields.host",
-                "program" : "kubernetes.pod.name",
-                "message": "log"
+                "display_timestamp" : "@timestamp",
+                "hostname" : "kubernetes.namespace_name",
+                "program" : "kubernetes.pod_name",
+                "message": "message"
             },
-            "message_format": "{{{kubernetes.container.name}}} : {{{log}}}"
+            "message_format": "{{{message}}}"
           },
           "color_mapping" : {
+            "field" : "log_level",
+            "mapping" : {
+              "E": "#ff3232",
+              "W": "#ff7f24",
+              "D": "#ffb90f",
+              "T": "#a2cd5a"
+            }
           }
         }
       ]

@@ -22,7 +22,12 @@ helm install elasticsearch bitnami/elasticsearch -f es_value.yaml -n efk
 ```
 Kibana
 ``` bash
+# Create logtrail.json
 kubectl create -f logtrail-cm.yaml
+# create tls sercet for ingress
+kubectl create -f aifs-tls-secret.yaml
+# create basic auth for ingress
+kubectl create -f basic-auth-secret.yaml
 helm install kibana bitnami/kibana -n efk -f kibana-value.yaml
 ```
 Fluentd
